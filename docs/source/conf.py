@@ -19,6 +19,7 @@
 #
 import os
 import sys
+import datetime
 import sphinx_bootstrap_theme
 sys.path.insert(0, os.path.abspath('../..'))
 
@@ -51,8 +52,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
+year = datetime.date.today().year
 project = 'Serendipyty: A Python toolbox for teaching Geophysics'
-copyright = '2017-2018, Filippo Broggini'
+copyright = u'2017-{:d}, Filippo Broggini'.format(year)
 author = 'Filippo Broggini'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -85,6 +87,11 @@ todo_include_todos = False
 
 # -- Options for HTML output ----------------------------------------------
 
+# If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
+html_show_sphinx = True
+# If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
+html_show_copyright = True
+
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
@@ -96,7 +103,10 @@ html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {
+    'bootswatch_theme': "flatly",
+    'navbar_title': 'Serendipyty',
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
