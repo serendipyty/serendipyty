@@ -4,9 +4,11 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = SerendipytyAPythontoolboxforteachingGeophysics
+SPHINXPROJ    = Serendipyty
 SOURCEDIR     = source
-BUILDDIR      = build
+BUILDDIR      = ../../serendipyty-docs
+PDFBUILDDIR   = /tmp
+PDF			  =	../manual.pdf
 
 # Put it first so that "make" without argument is like "make help".
 help:
