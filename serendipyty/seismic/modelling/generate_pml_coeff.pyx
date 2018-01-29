@@ -5,8 +5,8 @@ Created on Fri Sep 30 13:58:34 2016
 @author: Filippo Broggini (ETH Zürich) - filippo.broggini@erdw.ethz.ch
 """
 # %%
-from __future__ import division
-from __future__ import print_function
+#from __future__ import division
+#from __future__ import print_function
 import numpy as np
 cimport numpy as np
 
@@ -18,7 +18,7 @@ ctypedef np.float64_t DTYPE_t
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def generate_pml_coeff(int nx, int nz, int pml, int npml, DTYPE_t fc, DTYPE_t dx, DTYPE_t dz, DTYPE_t dt, DTYPE_t vp0):
+cdef generate_pml_coeff(int nx, int nz, int pml, int npml, DTYPE_t fc, DTYPE_t dx, DTYPE_t dz, DTYPE_t dt, DTYPE_t vp0):
     """
     % ! SEISMIC_CPML Version 1.1.1, November 2009.
     % !

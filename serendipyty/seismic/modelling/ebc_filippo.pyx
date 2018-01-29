@@ -8,8 +8,8 @@ Created on Fri Oct 21 11:51:43 2016
 # %% Full model run on 2D staggered grid
 # O(2,2)
 
-from __future__ import division
-from __future__ import print_function
+#from __future__ import division
+#from __future__ import print_function
 from timeit import default_timer as timer
 import numpy as np
 cimport numpy as np
@@ -17,7 +17,7 @@ cimport numpy as np
 cimport cython
 from cython.parallel cimport prange, parallel
 
-import generate_pml_coeff
+import serendipyty.seismic.modelling.generate_pml_coeff as generate_pml_coeff
 
 import sys
 #sys.path.append('/w04d2/bfilippo/pythonwork/cylinalg')

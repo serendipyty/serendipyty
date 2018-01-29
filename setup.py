@@ -348,7 +348,7 @@ setup(
     #
     # Remember to configure these appropriately for your project, especially license!
     #
-    classifiers = [ "Development Status :: 4 - Beta",
+    classifiers = [ "Development Status :: 1 - Planning",
                     "Environment :: Console",
                     "Intended Audience :: Developers",
                     "Intended Audience :: Science/Research",
@@ -370,6 +370,8 @@ setup(
 
     install_requires = ["numpy"],
 
+    #python_requires = '>=3.4',
+
     # keywords for PyPI (in case you upload your project)
     #
     # e.g. the keywords your project uses as topics on GitHub, minus "python" (if there)
@@ -384,16 +386,16 @@ setup(
     #
     # This **does not** automatically recurse into subpackages, so they must also be declared.
     #
-    packages = find_packages(),
+    packages = find_packages(exclude=['contrib', 'docs', 'tests*']),
 
     # Install also Cython headers so that other Cython modules can cimport ours
     #
     # Fileglobs relative to each package, **does not** automatically recurse into subpackages.
     #
     # FIXME: force sdist, but sdist only, to keep the .pyx files (this puts them also in the bdist)
-    package_data={'serendipyty': ['*.pxd', '*.pyx'],
-                  'serendipyty.modelling': ['*.pxd', '*.pyx'],
-                  'serendipyty.modelling.seismic.': ['*.pxd', '*.pyx']},
+    package_data = {'serendipyty': ['*.pxd', '*.pyx'],
+                    'serendipyty.modelling': ['*.pxd', '*.pyx'],
+                    'serendipyty.modelling.seismic.': ['*.pxd', '*.pyx']},
 
     # Disable zip_safe, because:
     #   - Cython won't find .pxd files inside installed .egg, hard to compile libs depending on this one

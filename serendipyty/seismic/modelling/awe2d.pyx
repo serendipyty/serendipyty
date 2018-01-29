@@ -15,7 +15,7 @@ cimport numpy as np
 cimport cython
 from cython.parallel cimport prange, parallel
 
-from . import generate_pml_coeff
+cimport serendipyty.seismic.modelling.generate_pml_coeff as generate_pml_coeff
 #reload(generate_pml_coeff)
 
 DTYPE = np.float64
