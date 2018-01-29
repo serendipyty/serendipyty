@@ -8,8 +8,6 @@ Created on Fri Sep 30 13:58:34 2016
 # %% Full model run on 2D staggered grid
 # O(2,2)
 
-from __future__ import division
-from __future__ import print_function
 from timeit import default_timer as timer
 import numpy as np
 cimport numpy as np
@@ -17,7 +15,7 @@ cimport numpy as np
 cimport cython
 from cython.parallel cimport prange, parallel
 
-import generate_pml_coeff
+from . import generate_pml_coeff
 #reload(generate_pml_coeff)
 
 DTYPE = np.float64
