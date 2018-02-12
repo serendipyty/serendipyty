@@ -53,6 +53,8 @@ class RickerWavelet(WaveletBase):
 
     The Ricker wavelet is the negative 2nd derivative of a Gaussian [1]_.
 
+    :param fc: central frequency
+
     References
     ----------
 

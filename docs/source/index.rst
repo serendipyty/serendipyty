@@ -7,8 +7,8 @@ Welcome to Serendipyty: A Python toolbox for teaching Geophysics's documentation
 =================================================================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+    :maxdepth: 2
+    :caption: Contents:
 
 
 PROVA PROVA PROVA
