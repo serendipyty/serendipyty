@@ -22,6 +22,7 @@ or
 
 from __future__ import division, print_function, absolute_import
 import numpy as np
+from sys import platform
 
 try:
     # Python 3
@@ -108,6 +109,9 @@ except ImportError:
 # Customize these as needed.
 #
 # Note that -O3 may sometimes cause mysterious problems, so we limit ourselves to -O2.
+
+if platform == 'darwin':
+    os.environ["CC"] = "gcc-7"
 
 # Modules involving numerical computations
 #
@@ -269,7 +273,7 @@ ext_module_pml = declare_cython_extension( "serendipyty.seismic.modelling.genera
 
 # this is mainly to allow a manual logical ordering of the declared modules
 #
-#cython_ext_modules = [ext_module_awe2d]
+#cython_ext_modules = [ext_module_pml]
 cython_ext_modules = [ext_module_pml,
                       ext_module_awe2d,
                       ext_module_ebc]

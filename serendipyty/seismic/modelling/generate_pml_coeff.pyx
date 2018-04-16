@@ -14,7 +14,7 @@ cimport cython
 
 DTYPE = np.float64
 
-ctypedef np.float64_t DTYPE_t
+#ctypedef np.float64_t DTYPE_t
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
