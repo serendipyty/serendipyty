@@ -16,6 +16,7 @@ __all__ = ['PointSource']
 
 __docformat__ = "restructuredtext en"
 
+
 class SourceBase(object):
     """Base class for representing a source emitter on a grid.
 
@@ -29,18 +30,20 @@ class SourceBase(object):
     `intensity` could conceivably become a function of time, in the future.
 
     """
+
     def __init__(self, **kwargs):
         """Constructor for the SourceBase class.
         """
 
-        self.shot=None
+        self.shot = None
 
     def get_source_count(self):
         return 1
+
     source_count = property(get_source_count, None, None, None)
 
-    def set_shot(self,shot):
-        self.shot=shot
+    def set_shot(self, shot):
+        self.shot = shot
 
     def reset_time_series(self, ts):
         pass
@@ -57,6 +60,7 @@ class SourceBase(object):
 
     def unserialize_dict(self, d):
         raise NotImplementedError()
+
 
 class PointSource(SourceBase):
     """Subclass of PointRepresentationBase and SourceBase for representing a
@@ -123,12 +127,15 @@ class PointSource(SourceBase):
         """
         if nu is None:
             if self._sample_interp_method == 'sparse':
-                return (self.adjoint_sampling_operator*(self.intensity*self.w(t, **kwargs))).toarray().reshape(self.mesh.shape())
+                return (self.adjoint_sampling_operator * (self.intensity * self.w(t, **kwargs))).toarray().reshape(
+                    self.mesh.shape())
             else:
-                return (self.adjoint_sampling_operator*(self.intensity*self.w(t, **kwargs))).reshape(self.mesh.shape())
+                return (self.adjoint_sampling_operator * (self.intensity * self.w(t, **kwargs))).reshape(
+                    self.mesh.shape())
         else:
             if self._sample_interp_method == 'sparse':
-                return (self.adjoint_sampling_operator*(self.intensity*self.w(nu=nu, **kwargs))).toarray().reshape(self.mesh.shape())
+                return (self.adjoint_sampling_operator * (self.intensity * self.w(nu=nu, **kwargs))).toarray().reshape(
+                    self.mesh.shape())
             else:
-                return (self.adjoint_sampling_operator*(self.intensity*self.w(nu=nu, **kwargs))).reshape(self.mesh.shape())
-
+                return (self.adjoint_sampling_operator * (self.intensity * self.w(nu=nu, **kwargs))).reshape(
+                    self.mesh.shape())

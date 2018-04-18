@@ -23,3 +23,9 @@ Acknowledgments
 * `Exploration and Environmental Geopyhysics group <http://www.eeg.ethz.ch/>`_ at ETH Zürich
 * `TIDES COST <http://www.tides-cost.eu/>`_ through a Short Term Scientific Mission at Utrecth University
 
+Credits
+=======
+Project: `PySIT <https://github.com/pysit/pysit>`_
+Copyright (c) 2011-2017 MIT and PySIT Developets
+License (MIT) https://github.com/pysit/pysit/blob/master/licenses/license.rst
+
