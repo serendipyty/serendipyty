@@ -20,6 +20,6 @@ Collaborators
 
 Acknowledgments
 ===============
-'Exploration and Environmental Geopyhysics group <http://www.eeg.ethz.ch/>'_ at ETH Zürich
-'TIDES COST <http://www.tides-cost.eu/>'_ through a Short Term Scientific Mission at Utrecth University
+* `Exploration and Environmental Geopyhysics group <http://www.eeg.ethz.ch/>`_ at ETH Zürich
+* `TIDES COST <http://www.tides-cost.eu/>`_ through a Short Term Scientific Mission at Utrecth University
 
