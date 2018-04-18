@@ -8,7 +8,9 @@ Installation
 ============
 
 Install with
+
 .. code-block:: shell
+
     pip install serendipyty
 
 Collaborators
