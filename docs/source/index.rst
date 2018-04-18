@@ -3,49 +3,28 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Serendipyty: A Python toolbox for teaching Geophysics's documentation!
-=================================================================================
-
-.. toctree::
-    :maxdepth: 2
-    :caption: Contents:
-
-
-PROVA PROVA PROVA
-==================
+Welcome to Serendipyty: A Python toolbox for teaching Geophysics
+================================================================
 
 .. raw:: html
 
     <div class="row alert alert-info">
 
-    <div class="col-md-4">
+    <div class="col-md-6">
 
-    <h3 class="text-center">Research</h3>
+    <h2 class="text-center">For teaching</h2>
 
-Make your research more **reproducible** by writing a Python script or
-`Jupyter notebook`_ instead of clicking through complicated menus.
-
-.. raw:: html
-
-    </div>
-
-    <div class="col-md-4">
-
-    <h3 class="text-center">Development</h3>
-
-Don't start from scratch! Build upon the existing tools in Serendipyty to develop
-new methods.
+Integrate Serendipyty with Jupyter notebooks to create beautiful documents for students.
 
 .. raw:: html
 
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-6">
 
-    <h3 class="text-center">Teaching</h3>
+    <h2 class="text-center">For research</h2>
 
-Combine Serendipyty with the `Jupyter notebook`_ to make rich, interactive
-documents. Great for teaching fundamental concepts of geophysics!
+Use Serendipyty to implement and test novel research ideas.
 
 .. raw:: html
 
@@ -54,6 +33,13 @@ documents. Great for teaching fundamental concepts of geophysics!
 .. raw:: html
 
 	</div> <!-- Row -->
+
+Content
+=======
+.. toctree::
+    :maxdepth: 2
+    
+    development
 
 Indices and tables
 ==================

@@ -53,13 +53,15 @@ class RickerWavelet(WaveletBase):
 
     The Ricker wavelet is the negative 2nd derivative of a Gaussian [1]_.
 
-    :param fc: central frequency
+    Parameters
+    ----------
+    fc: float
+        central frequency
 
     References
     ----------
-
-    [1] N.  Ricker, "The form and laws of propagation of seismic wavelets,"
-    Geophysics, vol. 18, pp. 10-40, 1953.
+    .. [1] N. Ricker, "The form and laws of propagation of seismic wavelets,"
+       Geophysics, vol. 18, pp. 10-40, 1953.
 
     """
 

@@ -39,13 +39,14 @@ extensions = ['sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
     'sphinx.ext.autosummary',
-    'sphinx.ext.githubpages']
+    'sphinx.ext.githubpages',
+    'numpydoc']
 
 ## Include Python objects as they appear in source files
 ## Default: alphabetically ('alphabetical')
 autodoc_member_order = 'bysource'
 ## Default flags used by autodoc directives
-autodoc_default_flags = ['members', 'show-inheritance']
+autodoc_default_flags = ['members', 'special-members', 'show-inheritance']
 ## Generate autodoc stubs with summaries from code
 autosummary_generate = True
 
@@ -114,7 +115,7 @@ html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 # documentation.
 #
 html_theme_options = {
-    'bootswatch_theme': "flatly",
+    'bootswatch_theme': "united",
     'navbar_title': 'Serendipyty',
 }
 
