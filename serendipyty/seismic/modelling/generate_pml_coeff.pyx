@@ -18,7 +18,7 @@ DTYPE = np.float64
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef generate_pml_coeff(int nx, int nz, int pml, int npml, DTYPE_t fc, DTYPE_t dx, DTYPE_t dz, DTYPE_t dt, DTYPE_t vp0):
+cdef generate_pml_coeff(int nx, int nz, int freesurface, int npml, DTYPE_t fc, DTYPE_t dx, DTYPE_t dz, DTYPE_t dt, DTYPE_t vp0):
     """
     % ! SEISMIC_CPML Version 1.1.1, November 2009.
     % !
@@ -323,7 +323,7 @@ cdef generate_pml_coeff(int nx, int nz, int pml, int npml, DTYPE_t fc, DTYPE_t d
         B_z_half[i,:] = b_z_half
         K_z_half[i,:] = k_z_half
 
-        if pml == 3:
+        if freesurface == 1:
             # Take out PML along top edge...
             # JR/MV
             for j in range(nz2):

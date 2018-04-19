@@ -74,8 +74,12 @@ class RickerWavelet(BaseWavelet):
 
     """
 
-    def __init__(self, t, fc=20.0, delay=None, **kwargs):
+    def __init__(self, t, dt=None, fc=20.0, delay=None, **kwargs):
         self.t = t
+        if dt is None:
+            self.dt = np.diff(self.t)[0]
+        else:
+            self.dt = dt
         self.fc = fc
         self.nt = t.size
         if delay is None:

@@ -9,5 +9,8 @@ serendipyty
     serendipyty.seismic.input
     serendipyty.seismic.input.wavelets
     serendipyty.seismic.input.sources
+    serendipyty.seismic.model.models
     serendipyty.seismic.modelling
     serendipyty.seismic.modelling.awe2d
+    serendipyty.seismic.modelling.bcs
+    serendipyty.seismic.hpc.hpc
