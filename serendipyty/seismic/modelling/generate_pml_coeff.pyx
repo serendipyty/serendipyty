@@ -9,16 +9,19 @@ Created on Fri Sep 30 13:58:34 2016
 #from __future__ import print_function
 import numpy as np
 cimport numpy as np
+from cpython cimport bool
 
 cimport cython
 
+# Set floating point precision
+ctypedef double MVTYPE
 DTYPE = np.float64
 
 #ctypedef np.float64_t DTYPE_t
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-cdef generate_pml_coeff(int nx, int nz, int freesurface, int npml, DTYPE_t fc, DTYPE_t dx, DTYPE_t dz, DTYPE_t dt, DTYPE_t vp0):
+cdef generate_pml_coeff(int nx, int nz, bool freesurface, int npml, DTYPE_t fc, DTYPE_t dx, DTYPE_t dz, DTYPE_t dt, DTYPE_t vp0):
     """
     % ! SEISMIC_CPML Version 1.1.1, November 2009.
     % !
@@ -121,27 +124,27 @@ cdef generate_pml_coeff(int nx, int nz, int freesurface, int npml, DTYPE_t fc, D
     cdef DTYPE_t k_max_PML = 1.0
     cdef DTYPE_t alpha_max_PML = 2.0*np.pi*(fc/2.0)
 
-    cdef double[::1] d_x = np.zeros(nx, dtype=DTYPE)
-    cdef double[::1] k_x = np.ones(nx, dtype=DTYPE)
-    cdef double[::1] alpha_x = np.zeros(nx, dtype=DTYPE)
-    cdef double[::1] a_x = np.zeros(nx, dtype=DTYPE)
-    cdef double[::1] b_x = np.ones(nx, dtype=DTYPE)
-    cdef double[::1] d_x_half = np.zeros(nx, dtype=DTYPE)
-    cdef double[::1] k_x_half = np.ones(nx, dtype=DTYPE)
-    cdef double[::1] alpha_x_half = np.zeros(nx, dtype=DTYPE)
-    cdef double[::1] a_x_half = np.zeros(nx, dtype=DTYPE)
-    cdef double[::1] b_x_half = np.ones(nx, dtype=DTYPE)
+    cdef MVTYPE[::1] d_x = np.zeros(nx, dtype=DTYPE)
+    cdef MVTYPE[::1] k_x = np.ones(nx, dtype=DTYPE)
+    cdef MVTYPE[::1] alpha_x = np.zeros(nx, dtype=DTYPE)
+    cdef MVTYPE[::1] a_x = np.zeros(nx, dtype=DTYPE)
+    cdef MVTYPE[::1] b_x = np.ones(nx, dtype=DTYPE)
+    cdef MVTYPE[::1] d_x_half = np.zeros(nx, dtype=DTYPE)
+    cdef MVTYPE[::1] k_x_half = np.ones(nx, dtype=DTYPE)
+    cdef MVTYPE[::1] alpha_x_half = np.zeros(nx, dtype=DTYPE)
+    cdef MVTYPE[::1] a_x_half = np.zeros(nx, dtype=DTYPE)
+    cdef MVTYPE[::1] b_x_half = np.ones(nx, dtype=DTYPE)
 
-    cdef double[::1] d_z = np.zeros(nz, dtype=DTYPE)
-    cdef double[::1] k_z = np.ones(nz, dtype=DTYPE)
-    cdef double[::1] alpha_z = np.zeros(nz, dtype=DTYPE)
-    cdef double[::1] a_z = np.zeros(nz, dtype=DTYPE)
-    cdef double[::1] b_z = np.ones(nz, dtype=DTYPE)
-    cdef double[::1] d_z_half = np.zeros(nz, dtype=DTYPE)
-    cdef double[::1] k_z_half = np.ones(nz, dtype=DTYPE)
-    cdef double[::1] alpha_z_half = np.zeros(nz, dtype=DTYPE)
-    cdef double[::1] a_z_half = np.zeros(nz, dtype=DTYPE)
-    cdef double[::1] b_z_half = np.ones(nz, dtype=DTYPE)
+    cdef MVTYPE[::1] d_z = np.zeros(nz, dtype=DTYPE)
+    cdef MVTYPE[::1] k_z = np.ones(nz, dtype=DTYPE)
+    cdef MVTYPE[::1] alpha_z = np.zeros(nz, dtype=DTYPE)
+    cdef MVTYPE[::1] a_z = np.zeros(nz, dtype=DTYPE)
+    cdef MVTYPE[::1] b_z = np.ones(nz, dtype=DTYPE)
+    cdef MVTYPE[::1] d_z_half = np.zeros(nz, dtype=DTYPE)
+    cdef MVTYPE[::1] k_z_half = np.ones(nz, dtype=DTYPE)
+    cdef MVTYPE[::1] alpha_z_half = np.zeros(nz, dtype=DTYPE)
+    cdef MVTYPE[::1] a_z_half = np.zeros(nz, dtype=DTYPE)
+    cdef MVTYPE[::1] b_z_half = np.ones(nz, dtype=DTYPE)
 
     # thickness of the PML layer in meters
     cdef DTYPE_t thickness_PML_x = npml * dx
@@ -291,19 +294,19 @@ cdef generate_pml_coeff(int nx, int nz, int freesurface, int npml, DTYPE_t fc, D
             a_z_half[i] = d_z_half[i] * (b_z_half[i] - 1.0) / (k_z_half[i] * (d_z_half[i] + k_z_half[i] * alpha_z_half[i]))
 
     # generate nx*nz matrix of PML coefficients
-    cdef double[:,::1] A_x = np.zeros((nx,nz), dtype=DTYPE)
-    cdef double[:,::1] B_x = np.zeros_like(A_x)
-    cdef double[:,::1] K_x = np.zeros_like(A_x)
-    cdef double[:,::1] A_x_half = np.zeros_like(A_x)
-    cdef double[:,::1] B_x_half = np.zeros_like(A_x)
-    cdef double[:,::1] K_x_half = np.zeros_like(A_x)
+    cdef MVTYPE[:,::1] A_x = np.zeros((nx,nz), dtype=DTYPE)
+    cdef MVTYPE[:,::1] B_x = np.zeros_like(A_x)
+    cdef MVTYPE[:,::1] K_x = np.zeros_like(A_x)
+    cdef MVTYPE[:,::1] A_x_half = np.zeros_like(A_x)
+    cdef MVTYPE[:,::1] B_x_half = np.zeros_like(A_x)
+    cdef MVTYPE[:,::1] K_x_half = np.zeros_like(A_x)
 
-    cdef double[:,::1] A_z = np.zeros_like(A_x)
-    cdef double[:,::1] B_z = np.zeros_like(A_x)
-    cdef double[:,::1] K_z = np.zeros_like(A_x)
-    cdef double[:,::1] A_z_half = np.zeros_like(A_x)
-    cdef double[:,::1] B_z_half = np.zeros_like(A_x)
-    cdef double[:,::1] K_z_half = np.zeros_like(A_x)
+    cdef MVTYPE[:,::1] A_z = np.zeros_like(A_x)
+    cdef MVTYPE[:,::1] B_z = np.zeros_like(A_x)
+    cdef MVTYPE[:,::1] K_z = np.zeros_like(A_x)
+    cdef MVTYPE[:,::1] A_z_half = np.zeros_like(A_x)
+    cdef MVTYPE[:,::1] B_z_half = np.zeros_like(A_x)
+    cdef MVTYPE[:,::1] K_z_half = np.zeros_like(A_x)
 
     for i in range(nz):
         A_x[0:nx,i] = a_x
@@ -323,7 +326,7 @@ cdef generate_pml_coeff(int nx, int nz, int freesurface, int npml, DTYPE_t fc, D
         B_z_half[i,:] = b_z_half
         K_z_half[i,:] = k_z_half
 
-        if freesurface == 1:
+        if freesurface:
             # Take out PML along top edge...
             # JR/MV
             for j in range(nz2):

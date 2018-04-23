@@ -286,7 +286,8 @@ cython_ext_modules = [ext_module_pml,
 # Note that my_ext_modules is just a list of Extension objects. We could add any C sources (not coming from Cython modules) here if needed.
 # cythonize() just performs the Cython-level processing, and returns a list of Extension objects.
 #
-my_ext_modules = cythonize( cython_ext_modules, include_path=my_include_dirs, gdb_debug=my_debug )
+my_ext_modules = cythonize( cython_ext_modules, include_path=my_include_dirs, gdb_debug=my_debug,
+        compiler_directives={'embedsignature': True})
 
 aa = 0
 print('####### datafiles content is')

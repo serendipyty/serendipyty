@@ -32,7 +32,7 @@ class BaseSource(object):
     """
 
     def __init__(self, **kwargs):
-        """Constructor for the SourceBase class.
+        """Constructor for the BaseSource class.
         """
 
         self.shot = None
