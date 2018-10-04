@@ -4,7 +4,7 @@
 
 Main setup for the library.
 
-Supports Python 2.7 and 3.4.
+Supports Python 3.4.
 
 Usage as usual with setuptools:
     python setup.py build_ext # Build the extensions (as shared libraries)
@@ -80,11 +80,11 @@ standard_doc_exts = [".md", ".rst", ".txt", ""]  # commonly .md for GitHub proje
 # Init
 #########################################################
 
-# check for Python 2.7 or later
+# check for Python 3.4 or later
 # http://stackoverflow.com/questions/19534896/enforcing-python-version-in-setup-py
 import sys
-if sys.version_info < (2,7):
-    sys.exit('Sorry, Python < 2.7 is not supported')
+if sys.version_info < (3,4):
+    sys.exit('Sorry, Python < 3.4 is not supported')
 
 import os
 
@@ -266,9 +266,8 @@ except MyFileNotFoundError:
 #########################################################
 
 # declare Cython extension modules here
-#
-ext_module_awe2d    = declare_cython_extension( "serendipyty.seismic.modelling.awe2d", use_math=True, use_openmp=True, include_dirs=my_include_dirs )
-ext_module_ebc    = declare_cython_extension( "serendipyty.seismic.modelling.ebc_filippo", use_math=True,  use_openmp=True, include_dirs=my_include_dirs )
+ext_module_awe2d = declare_cython_extension( "serendipyty.seismic.modelling.awe2d", use_math=True, use_openmp=True, include_dirs=my_include_dirs )
+ext_module_ebc = declare_cython_extension( "serendipyty.seismic.modelling.ebc_filippo", use_math=True,  use_openmp=True, include_dirs=my_include_dirs )
 ext_module_pml = declare_cython_extension( "serendipyty.seismic.modelling.generate_pml_coeff", use_math=False, use_openmp=False, include_dirs=my_include_dirs )
 
 # this is mainly to allow a manual logical ordering of the declared modules
@@ -341,7 +340,7 @@ setup(
     long_description = DESC,
 
     # CHANGE THIS
-    license = "GNU General Public License v3 (GPLv3)",
+    license = "Apache License 2.0",
 
     # free-form text field; http://stackoverflow.com/questions/34994130/what-platforms-argument-to-setup-in-setup-py-does
     platforms = ["Linux"],
@@ -357,7 +356,7 @@ setup(
                     "Environment :: Console",
                     "Intended Audience :: Developers",
                     "Intended Audience :: Science/Research",
-                    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+                    "License :: OSI Approved :: Apache Software License",
                     "Operating System :: POSIX :: Linux",
                     "Programming Language :: Cython",
                     "Programming Language :: Python",
@@ -373,9 +372,9 @@ setup(
     #
     setup_requires = ["cython", "numpy"],
 
-    install_requires = ["numpy"],
+    install_requires = ["numpy", "sphinx"],
 
-    #python_requires = '>=3.4',
+    python_requires = '>=3.4',
 
     # keywords for PyPI (in case you upload your project)
     #
