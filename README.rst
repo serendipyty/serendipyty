@@ -25,8 +25,8 @@ Install with
 
 Documentation
 =============
-Documentation is generated using `Sphinx <http://www.sphinx-doc.org/en/master/#>_ and
-used the `numpy docstring style <https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard>`.
+Documentation is generated using `Sphinx <http://www.sphinx-doc.org/en/master/#>`_ and
+used the `numpy docstring style <https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard>`_.
 
 Collaborators
 =============
@@ -38,7 +38,7 @@ Collaborators
 Contacting us
 =============
 * Feel free to `open an issue
-  <https://github.com/serendipyty/serendipyty/issues/new>`__
+  <https://github.com/serendipyty/serendipyty/issues/new>`_
   to get in touch with the developers.
 
 Acknowledgments
