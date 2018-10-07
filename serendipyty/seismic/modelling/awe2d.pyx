@@ -101,7 +101,7 @@ def forward(model, src, outparam, bc, hpc=None, int verbose=0):
     cdef DTYPE_t dx = model.dx
     cdef DTYPE_t dz = model.dx
     cdef DTYPE_t d2 = 1.0/(model.dx*model.dz)
-    cdef DTYPE_t vp0 = model.vp[1,1]
+    cdef DTYPE_t vp0 = model.model[1,1,0]
 
 ###############################################################################
 # HPC parameters
@@ -157,7 +157,7 @@ def forward(model, src, outparam, bc, hpc=None, int verbose=0):
         svb = np.zeros((nsvb, ntsa, nrec), dtype=DTYPE)
         #print('Before: {}'.format(type(srec_locs)))
         srec_locs = outparam[m]['receiver_locations']
-        print('After: {}'.format(type(srec_locs)))
+        #print('After: {}'.format(type(srec_locs)))
 
     # Staggering
     cdef double[::1] stag_v = np.zeros((nsvb), dtype=DTYPE)
@@ -214,11 +214,11 @@ def forward(model, src, outparam, bc, hpc=None, int verbose=0):
 
     # Free surface on top
     if bc.freesurface:
-        vp_pml = np.pad(model.vp, ((bc.npml, bc.npml), (0, bc.npml)), 'edge')
-        rho_pml = np.pad(model.rho, ((bc.npml, bc.npml), (0, bc.npml)), 'edge')
+        vp_pml = np.pad(model.model[..., 0], ((bc.npml, bc.npml), (0, bc.npml)), 'edge')
+        rho_pml = np.pad(model.model[..., 1], ((bc.npml, bc.npml), (0, bc.npml)), 'edge')
     else:
-        vp_pml = np.pad(model.vp, ((bc.npml, bc.npml), (bc.npml, bc.npml)), 'edge')
-        rho_pml = np.pad(model.rho, ((bc.npml, bc.npml), (bc.npml, bc.npml)), 'edge')
+        vp_pml = np.pad(model.model[..., 0], ((bc.npml, bc.npml), (bc.npml, bc.npml)), 'edge')
+        rho_pml = np.pad(model.model[..., 1], ((bc.npml, bc.npml), (bc.npml, bc.npml)), 'edge')
 
 ###############################################################################
 # Initialize all the typed memoryviews

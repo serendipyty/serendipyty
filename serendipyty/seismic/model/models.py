@@ -9,6 +9,8 @@ Created on Wed Feb  7 15:10:52 2018
 import math
 import numpy as np
 
+import serendipyty.seismic.vis.vis as vis
+
 DTYPE = np.float64
 
 __all__ = ['BaseModel', 'AcousticModel']
@@ -26,6 +28,8 @@ class BaseModel(object):
     ----------
     n : list of int
         Dimensions in (x, y, z)
+    ndim : int
+        Number of dimensions
 
     Methods
     -------
@@ -33,9 +37,13 @@ class BaseModel(object):
 
     """
 
-    def __init__(self, dx, dy, dz):
+    def __init__(self, modeltype, dx, dy, dz):
+
+        self.type = modeltype
 
         self.n = [-1, -1, -1]
+
+        self.ndim = 0
 
         # Discretization
         self.dx = dx
@@ -48,6 +56,9 @@ class BaseModel(object):
         else:
             self.dz = dz
         #raise NotImplementedError('')
+
+    def plot(self, style=None, **kwargs):
+        vis.plot(self.model, style=self.type, **kwargs)
 
     # def __call__(self, it=None, **kwargs):
     #     r"""Callable object method for the seismic sources.
@@ -74,7 +85,7 @@ class AcousticModel(BaseModel):
     ----------
     dx : float
         Spatial discretization in the x direction.
-    dz : float, optional
+    dy : float, optional
         Spatial discretization in the y direction.
     dz : float, optional
         Spatial discretization in the z direction.
@@ -87,21 +98,22 @@ class AcousticModel(BaseModel):
 
     def __init__(self, dx, vp, rho, dy=None, dz=None):
 
-        super().__init__(dx, dy, dz)
-
-        self.type = 'Acoustic'
-
-        # Model parameters
-        self.vp = vp
-        self.rho = rho
+        super().__init__('Acoustic', dx, dy, dz)
 
         # 2D or 3D
-        if self.vp.ndim == 3:
+        if vp.ndim == 3:
             self.is3d = True
-            # Model dimensions
-            self.n = self.vp.shape
+            self.ndim = 3
+            self.n = vp.shape
         else:
             self.is3d = False
-            self.n[0], self.n[2] = self.vp.shape
+            self.ndim = 2
+            self.n[0], self.n[2] = vp.shape
             self.n[1] = 1
 
+        # Model parameters
+        self.model = np.zeros((*vp.shape, 2))
+        self.model[..., 0] = vp
+        self.model[..., 1] = rho
+
+        # Vis parameters

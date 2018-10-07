@@ -6,11 +6,8 @@ Created on Wed Feb  7 15:10:52 2018
 @author: Filippo Broggini (ETH Zürich) - filippo.broggini@erdw.ethz.ch
 """
 
-import itertools
-
 import numpy as np
-import scipy.sparse as spsp
-from scipy.interpolate import interp1d
+import matplotlib.pyplot as plt
 
 __all__ = ['BaseSource', 'PointSource']
 
@@ -36,9 +33,35 @@ class BaseSource(object):
         """
 
         self.shot = None
+        self.wavelet = None
 
     def set_shot(self, shot):
         self.shot = shot
+
+    def plot(self, tmax=None,
+             aspect='auto', style='wavelet', figsize=None):
+        r""" Create a plot
+
+        """
+
+        # Remove the ugly ticks
+        plt.tick_params(
+            which='both',   # both major and minor ticks are affected
+            bottom=False,   # ticks along the bottom edge are off
+            top=False,      # ticks along the top edge are off
+            left=False,     # ticks along the left edge are off
+            right=False     # ticks along the right edge are off
+        )
+
+        # Create plot
+        line = plt.plot(self.wavelet.t, self.wavelet.wavelet, linewidth=3)
+        plt.title('Source wavelet')
+        plt.xlabel('Time [s]')
+        plt.ylabel('Amplitude')
+        if tmax is not None:
+            plt.xlim((0, tmax))
+
+        return line
 
     def reset_time_series(self, ts):
         pass
@@ -102,32 +125,3 @@ class PointSource(BaseSource):
 
         # Add a check on mode
         self.mode = mode
-
-    def f(self, t=0.0, nu=None, **kwargs):
-        """Evaluate source emitter at time t on numerical grid.
-
-        Parameters
-        ----------
-        t : float
-            Time at which to evaluate the source wavelet.
-        **kwargs : dict, optional
-            May pass additional parameters to the source wavelet call.
-
-        Returns
-        -------
-        The function w evaluated on a grid as an ndarray shaped like the domain.
-        """
-        if nu is None:
-            if self._sample_interp_method == 'sparse':
-                return (self.adjoint_sampling_operator * (self.intensity * self.w(t, **kwargs))).toarray().reshape(
-                    self.mesh.shape())
-            else:
-                return (self.adjoint_sampling_operator * (self.intensity * self.w(t, **kwargs))).reshape(
-                    self.mesh.shape())
-        else:
-            if self._sample_interp_method == 'sparse':
-                return (self.adjoint_sampling_operator * (self.intensity * self.w(nu=nu, **kwargs))).toarray().reshape(
-                    self.mesh.shape())
-            else:
-                return (self.adjoint_sampling_operator * (self.intensity * self.w(nu=nu, **kwargs))).reshape(
-                    self.mesh.shape())
