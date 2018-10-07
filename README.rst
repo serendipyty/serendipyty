@@ -2,6 +2,10 @@ Serendipyty
 ===========
 \(n\) The occurrence and development of events by chance in a happy or beneficial way
 
+.. image:: http://img.shields.io/pypi/v/verde.svg?style=flat-square
+    :alt: Latest version on PyPI
+    :target: https://pypi.python.org/pypi/serendipyty
+
 Serendipyty is a Python library for learning and teaching Geophysics.
 The goal of this project is to introduce the concept of
 reproducible computational science to students with little or no programming experience.
@@ -37,4 +41,3 @@ Credits
 Project: `PySIT <https://github.com/pysit/pysit>`_
 Copyright (c) 2011-2017 MIT and PySIT Developets
 License (MIT) https://github.com/pysit/pysit/blob/master/licenses/license.rst
-

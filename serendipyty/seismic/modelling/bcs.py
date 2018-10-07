@@ -38,6 +38,15 @@ class PmlBc(object):
     freesurface : bool
         If True, applies a free surface on the top edge.
 
+    Notes
+    -----
+    The perfectly matched layer (PML) absorbing boundary conditions
+    are implemented following [1]_.
+
+    .. [1] D. Komatitsch and J. Tromp,
+    "A perfectly matched layer absorbing boundary condition
+    for the second-order seismic wave equation",
+    Geophys. J. Int. (2003) 154, 146–153
     """
 
     def __init__(self, npml=20, freesurface=False):
