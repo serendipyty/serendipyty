@@ -58,22 +58,9 @@ class BaseModel(object):
         #raise NotImplementedError('')
 
     def plot(self, style=None, **kwargs):
+        r""" Plot the model parameters.
+        """
         vis.plot(self.model, style=self.type, **kwargs)
-
-    # def __call__(self, it=None, **kwargs):
-    #     r"""Callable object method for the seismic sources.
-    #
-    #     Parameters
-    #     ----------
-    #     it : int, array-like
-    #         Index(es) at which to evaluate wavelet.
-    #
-    #     """
-    #
-    #     if it is not None:
-    #         return self._evaluate_time(it)
-    #     else:
-    #         raise ValueError('A time must be provided.')
 
 
 class AcousticModel(BaseModel):
@@ -92,7 +79,7 @@ class AcousticModel(BaseModel):
     vp : float, ndarray
         Velocity model
     rho : float, ndarray
-        Density  model
+        Density model
 
     """
 
