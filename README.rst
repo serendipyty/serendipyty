@@ -22,14 +22,15 @@ Install with
     conda create -n yourenv python=3.6
     source activate yourenv
 
-    conda install numpy
-    cython
+    # Setup
+    conda install numpy cython
 
+    conda install matplotlib joblib pandas
 
-    sphinx
-
+    pip install mpldatacursor
 
     conda install jupyter
+
 
     pip install --upgrade pip
     pip install serendipyty
