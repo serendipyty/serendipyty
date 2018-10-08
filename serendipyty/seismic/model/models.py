@@ -19,7 +19,7 @@ _sqrt2 = math.sqrt(2.0)
 
 
 class BaseModel(object):
-    r""" Base class for velocity and density models.
+    r"""Base class for velocity and density models.
 
     This is implemented as a function object, so the magic happens in the
     `__call__` member function.
@@ -58,13 +58,13 @@ class BaseModel(object):
         #raise NotImplementedError('')
 
     def plot(self, style=None, **kwargs):
-        r""" Plot the model parameters.
+        r"""Plot the model parameters.
         """
         vis.plot(self.model, style=self.type, **kwargs)
 
 
 class AcousticModel(BaseModel):
-    r""" Acoustic model.
+    r"""Acoustic model.
 
     Velocity and density models for an acoustic medium.
 
@@ -80,7 +80,6 @@ class AcousticModel(BaseModel):
         Velocity model
     rho : float, ndarray
         Density model
-
     """
 
     def __init__(self, dx, vp, rho, dy=None, dz=None):

@@ -19,14 +19,25 @@ Install with
 
 .. code-block:: shell
 
-    conda create -n yourenv python=3.4
+    conda create -n yourenv python=3.6
+    source activate yourenv
+
+    conda install numpy
+    cython
+
+
+    sphinx
+
+
+    conda install jupyter
+
     pip install --upgrade pip
     pip install serendipyty
 
 Documentation
 =============
 Documentation is generated using `Sphinx <http://www.sphinx-doc.org/en/master/#>`_ and
-used the `numpy docstring style <https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard>`_.
+uses the `numpy docstring style <https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard>`_.
 
 Collaborators
 =============
@@ -48,6 +59,5 @@ Acknowledgments
 
 Credits
 =======
-Project: `PySIT <https://github.com/pysit/pysit>`_
-Copyright (c) 2011-2017 MIT and PySIT Developers
-License (MIT) https://github.com/pysit/pysit/blob/master/licenses/license.rst
+* `PySIT <https://github.com/pysit/pysit>`_ Copyright (c) 2011-2017 MIT and PySIT Developers
+* `Fatiando <https://www.fatiando.org/>`_  Copyright (c) 2010-2016, Leonardo Uieda

@@ -10,7 +10,7 @@ __all__ = ['BaseHpc']
 
 
 class BaseHpc(object):
-    r""" Base class for HPC parameters.
+    r"""Base class for HPC parameters.
 
     This class defines the basic parameters for the HPC implementations
     used in the Serendipyty package.

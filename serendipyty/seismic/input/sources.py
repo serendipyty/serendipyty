@@ -16,16 +16,6 @@ __docformat__ = "restructuredtext en"
 
 class BaseSource(object):
     r"""Base class for representing a source emitter on a grid.
-
-    Methods
-    -------
-    f(t, **kwargs)
-        Evaluate w on grid numerically, must be implemented by sub class.
-
-    Notes
-    -----
-    `intensity` could conceivably become a function of time, in the future.
-
     """
 
     def __init__(self, **kwargs):
@@ -40,8 +30,16 @@ class BaseSource(object):
 
     def plot(self, tmax=None,
              aspect='auto', style='wavelet', figsize=None):
-        r""" Create a plot
+        r"""Plot the source wavelet.
 
+        Parameters
+        ----------
+        tmax : float
+            Max time to plot.
+        aspect: float, 'auto', 'equal'
+            See matplotlib documentation.
+        style: str
+            Not used.
         """
 
         # Remove the ugly ticks
@@ -63,48 +61,33 @@ class BaseSource(object):
 
         return line
 
-    def reset_time_series(self, ts):
-        pass
-
-    def f(self, t, **kwargs):
-        raise NotImplementedError('Evaluation function \'f\' must be implemented by subclass.')
-
-    def w(self, *argsw, **kwargs):
-        raise NotImplementedError('Wavelet function must be implemented at the subclass level.')
-
 
 class PointSource(BaseSource):
     r"""Subclass of BaseSource for representing a
     point source emitter on a grid.
 
-    Methods
-    -------
-    f(t, **kwargs)
-        Evaluate w(t)*delta(x-x') numerically.
-
+    Parameters
+    ----------
+    loc : float, ndarray
+        Location of the source in the physical coordinates of the domain.
+        loc should be a (n x 3) ndarray, where n denotes
+        the number of sources.
+    wavelet : BaseWavelet
+        Function of time that produces the source wavelet.
+        If only one source location is present, then wavelet should be a (1 x nt) ndarray.
+        If multiple (n) source locations are present, then wavelet can be a (1 x nt) ndarray
+        or a (n x nt) ndarray. In the first case, the same wavelet will be used
+        for all source locations.
+    mode : string, optional
+        Mode of the source. Monopole source: 'q', 0.
+        Dipole sources: 'fx', 1, 'fy', 2, 'fz', 3.
+    **kwargs : dict, optional
+        May be used to specify `approximation` and `approximation_width` to
+        base class.
     """
 
     def __init__(self, loc, wavelet, mode='q'):
         r"""Constructor for the PointSource class.
-
-        Parameters
-        ----------
-        loc : float, ndarray
-            Location of the source in the physical coordinates of the domain.
-            loc should be a (n x 3) ndarray, where n denotes
-            the number of sources.
-        wavelet : BaseWavelet
-            Function of time that produces the source wavelet.
-            If only one source location is present, then wavelet should be a (1 x nt) ndarray.
-            If multiple (n) source locations are present, then wavelet can be a (1 x nt) ndarray
-            or a (n x nt) ndarray. In the first case, the same wavelet will be used
-            for all source locations.
-        mode : string, optional
-            Mode of the source. Monopole source: 'q', 0.
-            Dipole sources: 'fx', 1, 'fy', 2, 'fz', 3.
-        **kwargs : dict, optional
-            May be used to specify `approximation` and `approximation_width` to
-            base class.
         """
 
         self.loc = loc

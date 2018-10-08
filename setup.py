@@ -90,12 +90,21 @@ import os
 
 from setuptools import setup, find_packages
 from setuptools.extension import Extension
+from setuptools.command.build_ext import build_ext as _build_ext
 
 try:
     from Cython.Build import cythonize
 except ImportError:
     sys.exit("Cython not found. Cython is needed to build the extension modules.")
 
+# This is required to automate cython compilation when installing with Pypi
+class build_ext(_build_ext):
+    def finalize_options(self):
+        _build_ext.finalize_options(self)
+        # Prevent numpy from thinking it is still in its setup process:
+        __builtins__.__NUMPY_SETUP__ = False
+        #import numpy
+        #self.include_dirs.append(numpy.get_include())
 
 #########################################################
 # Definitions
@@ -386,6 +395,10 @@ setup(
     #
     ext_modules = my_ext_modules,
 
+    # To automate compilation of cython files
+    #
+    cmdclass={'build_ext': build_ext},
+
     # Declare packages so that  python -m setup build  will copy .py files (especially __init__.py).
     #
     # This **does not** automatically recurse into subpackages, so they must also be declared.
@@ -398,8 +411,8 @@ setup(
     #
     # FIXME: force sdist, but sdist only, to keep the .pyx files (this puts them also in the bdist)
     package_data = {'serendipyty': ['*.pxd', '*.pyx'],
-                    'serendipyty.modelling': ['*.pxd', '*.pyx'],
-                    'serendipyty.modelling.seismic.': ['*.pxd', '*.pyx']},
+                    'serendipyty.seismic': ['*.pxd', '*.pyx'],
+                    'serendipyty.seismic.modelling': ['*.pxd', '*.pyx']},
 
     # Disable zip_safe, because:
     #   - Cython won't find .pxd files inside installed .egg, hard to compile libs depending on this one

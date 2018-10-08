@@ -29,16 +29,28 @@ ctypedef np.float64_t DTYPE_t
 def forward(model, src, outparam, bc, hpc=None, int verbose=0):
     r"""Acoustic wave equation forward modeling.
 
-    Acoustic wave equation
-    forward modeling.
+    Finite-difference time-domain solution of the 2D acoustic wave equation
+    implemented using Cython.
 
     Parameters
     ----------
     model : BaseModel
-        Location of the source in the physical coordinates of the domain.
-        loc should be a (n x 3) ndarray, where n denotes
-        the number of sources.
+        Model class.
+    src : BaseSource
+        Source class.
+    outparam: list
+        List of outputs.
+    bc: BaseBc
+        Boundary conditions class.
+    hpc: BaseHpc
+        HPC class.
+    verbose: int
+        Set to 1 output more information.
 
+    Returns
+    -------
+    outputs: dict
+        Dictionary containing the outputs required by the input outparam list.
     """
 
     cdef size_t a, i, j, k, l, js, ks, f

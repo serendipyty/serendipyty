@@ -3,8 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Serendipyty: A Python toolbox for teaching Geophysics
-================================================================
+Welcome to Serendipyty
+======================
+A Python toolbox for teaching Geophysics
+========================================
+
+.. image:: _static/cover.png
+    :alt: Wavefields
 
 .. raw:: html
 
@@ -35,14 +40,15 @@ Use Serendipyty to implement and test novel research ideas.
 	</div> <!-- Row -->
 
 Content
-=======
+-------
 .. toctree::
     :maxdepth: 2
-    
+
+    examples
     development
 
 Indices and tables
-==================
+------------------
 
 * :ref:`genindex`
 * :ref:`modindex`

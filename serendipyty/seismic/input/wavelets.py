@@ -17,7 +17,7 @@ _sqrt2 = math.sqrt(2.0)
 
 
 class BaseWavelet(object):
-    r""" Base class for source wavelets.
+    r"""Base class for source wavelets.
 
     This is implemented as a function object, so the magic happens in the
     `__call__` member function.
@@ -37,18 +37,18 @@ class BaseWavelet(object):
         Parameters
         ----------
         it : int, array-like
-            Index(es) at which to evaluate wavelet.
+            Index(es) at which to evaluate the wavelet.
 
         """
 
         if it is not None:
             return self._evaluate_time(it)
         else:
-            raise ValueError('A time must be provided.')
+            raise ValueError('An index must be provided.')
 
 
 class RickerWavelet(BaseWavelet):
-    r""" Ricker wavelet.
+    r"""Ricker wavelet.
 
     The Ricker wavelet is the negative 2nd derivative of a Gaussian [1]_.
 
@@ -57,9 +57,9 @@ class RickerWavelet(BaseWavelet):
     t : float, ndarray
         Time array.
     fc : float, optional
-        Central (peak) frequency of the wavelet
+        Central (peak) frequency of the wavelet.
     delay : float, optional
-        Time delay to be applied to the wavelet. The default delay is 1/`fc`.
+        Time delay to be applied to the wavelet. The default delay is 1/fc.
 
     Attributes
     ----------
@@ -68,10 +68,8 @@ class RickerWavelet(BaseWavelet):
 
     References
     ----------
-
     .. [1] N. Ricker, The form and laws of propagation of seismic wavelets,
        Geophysics, vol. 18, pp. 10-40, 1953.
-
     """
 
     def __init__(self, t, dt=None, fc=20.0, delay=None, **kwargs):
@@ -97,32 +95,25 @@ class RickerWavelet(BaseWavelet):
 
 
 class RickerIntegratedWavelet(BaseWavelet):
-    r""" Integral of the Ricker wavelet.
+    r"""Integral of the Ricker wavelet.
 
-    The Ricker wavelet is the negative 2nd derivative of a Gaussian [1]_.
+    This wavelet is the time integral of a Ricker wavelet.
 
     Parameters
     ----------
     t : float, ndarray
         Time array.
     fc : float, optional
-        Central (peak) frequency of the wavelet
+        Central (peak) frequency of the wavelet.
     normalized : bool, optional
         Normalize maximum amplitude to 1
     delay : float, optional
-        Time delay to be applied to the wavelet. The default delay is 1/`fc`.
+        Time delay to be applied to the wavelet. The default delay is 1/fc.
 
     Attributes
     ----------
     wavelet : float, ndarray
         Array that contains the wavelet.
-
-    References
-    ----------
-
-    .. [1] N. Ricker, The form and laws of propagation of seismic wavelets,
-       Geophysics, vol. 18, pp. 10-40, 1953.
-
     """
 
     def __init__(self, t, dt=None, fc=20.0, delay=None, normalized=False, **kwargs):

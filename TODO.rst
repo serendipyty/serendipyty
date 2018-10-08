@@ -15,4 +15,5 @@ Python
 ------
 
 - Implement getter and setter where needed
-
+- Define private attributes where needed
+- Write unit tests

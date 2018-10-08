@@ -9,29 +9,18 @@ import numpy as np
 
 DTYPE = np.float64
 
-# These two Ricker wavelet functions should be moved to the input submodule
-def ricker(fc, nt, dt):
-    t_source = 1/fc
-    t0 = t_source*1.5
-    t = np.linspace(0,(nt-1)*dt,nt, dtype=DTYPE)
-    tau = np.pi*(t-t0)/t0
-    a = 4.0
-    src = (1-a*tau*tau)*np.exp(-(a/2)*tau*tau)
-
-    return src
-
-def rickermh(fc, nt, dt):
-    t_source = 1/fc
-    t0 = t_source*1
-    t = np.linspace(0,(nt-1)*dt,nt, dtype=DTYPE)
-    tau = np.pi*(t-t0)/t0
-    a = 2.0
-    src = (1-a*tau*tau)*np.exp(-(a/2)*tau*tau)
-
-    return src
+#def rickermh(fc, nt, dt):
+#    t_source = 1/fc
+#    t0 = t_source*1
+#    t = np.linspace(0,(nt-1)*dt,nt, dtype=DTYPE)
+#    tau = np.pi*(t-t0)/t0
+#    a = 2.0
+#    src = (1-a*tau*tau)*np.exp(-(a/2)*tau*tau)
+#
+#    return src
 
 def rectangle(**kwargs):
-    """ Create a rectangular surface """
+    """Create a rectangular surface """
 
     nfaces = 4
 
@@ -81,8 +70,25 @@ def rectangle(**kwargs):
                                        flag))
     return locations
 
-def oneface(**kwargs):
-    """ Create a single horizontal or vertical surface """
+def oneface(faces, origin, number_of_cells, cell_size, **kwargs):
+    """Create a single horizontal or vertical surface
+
+    Parameters
+    ----------
+    faces: list
+        Orientation of the face: 0 (left), 1 (right), 2 (top), 3 (bottom), 4, 5
+    origin: list
+        Coordinates of the origin of the surface.
+    number_of_cells: list
+        Number of cells in three dimensions.
+    cells_size: list
+        Cell size in three dimensions.
+
+    Returns
+    -------
+    locations: array
+        Locations
+    """
 
     # This function should be merged wit the one above (rectangular).
     # Right now, it is just a special case and, for this reason,
@@ -90,10 +96,10 @@ def oneface(**kwargs):
 
     # I still need to implement a check to make sure that
     # only one face is passed to this function
-    faces = kwargs['faces']
-    origin = kwargs['origin']
-    number_of_cells = kwargs['number_of_cells']
-    cell_size = kwargs['cell_size']
+#    faces = faceskwargs['faces']
+#    origin = kwargs['origin']
+#    number_of_cells = kwargs['number_of_cells']
+#    cell_size = kwargs['cell_size']
 
     facedict = {0: (origin[0],
                     number_of_cells[2],
