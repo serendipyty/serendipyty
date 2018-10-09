@@ -6,6 +6,9 @@ Serendipyty
     :alt: Latest version on PyPI
     :target: https://pypi.python.org/pypi/serendipyty
 
+.. image:: https://mybinder.org/badge.svg
+    :target: https://mybinder.org/v2/gh/serendipyty/examples/master?filepath=Seismic%20modeling%20and%20visualization%20-%20v1.ipynb
+
 Serendipyty is a Python library for learning and teaching Geophysics.
 The goal of this project is to introduce the concept of
 reproducible computational science to students with little or no programming experience.
@@ -30,7 +33,6 @@ Install with
     conda install jupyter
     python -m ipykernel install --user --name yourenv --display-name "Python (yourenv)"
 
-    pip install --upgrade pip
     pip install --upgrade -v serendipyty
 
 Documentation

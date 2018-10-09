@@ -7,4 +7,4 @@ dependencies:
   - joblib
   - pandas
   - pip:
-    - serendipyty=0.0.8
+    - serendipyty==0.0.8
