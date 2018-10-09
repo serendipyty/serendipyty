@@ -30,6 +30,7 @@ Install with
     pip install mpldatacursor
 
     conda install jupyter
+    python -m ipykernel install --user --name yourenv --display-name "Python (yourenv)"
 
 
     pip install --upgrade pip
