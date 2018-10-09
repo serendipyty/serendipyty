@@ -39,22 +39,19 @@ except:  # FileNotFoundError does not exist in Python 2.7
 
 # Name of the top-level package of your library.
 #
-# This is also the top level of its source tree, relative to the top-level project directory setup.py resides in.
-#
-libname="serendipyty"
+# This is also the top level of its source tree,
+# relative to the top-level project directory setup.py resides in.
+libname = "serendipyty"
 
 # Choose build type.
-#
-build_type="optimized"
+build_type = "optimized"
 #build_type="debug"
 
 # Short description for package list on PyPI
-#
-SHORTDESC="A Python library for learning and teaching Geophysics"
+SHORTDESC = "A Python library for learning and teaching Geophysics"
 
 # Long description for package homepage on PyPI
-#
-DESC="""A Python library for learning and teaching Geophysics.
+DESC = """A Python library for learning and teaching Geophysics.
 
 The focus of this template is on numerical scientific projects,
 where a custom Cython extension (containing all-new code) can bring a large speedup.
@@ -65,10 +62,10 @@ Supports Python >= 3.4.
 # Set up data files for packaging.
 #
 # Directories (relative to the top-level directory where setup.py resides) in which to look for data files.
-datadirs  = ("test",)
+datadirs = () #("test",)
 
 # File extensions to be considered as data files. (Literal, no wildcards.)
-dataexts  = (".py",  ".pyx", ".pxd",  ".c", ".cpp", ".h",  ".sh",  ".lyx", ".tex", ".txt", ".pdf")
+dataexts = (".py",  ".pyx", ".pxd",  ".c", ".cpp", ".h",  ".sh",  ".lyx", ".tex", ".txt", ".pdf")
 
 # Standard documentation to detect (and package if it exists).
 standard_docs     = ["README", "LICENSE", "TODO", "CHANGELOG", "AUTHORS"]  # just the basename without file extension
@@ -121,8 +118,8 @@ if platform == 'darwin':
     os.environ["CC"] = "gcc-7"
 
 # Modules involving numerical computations
-extra_compile_args_math_optimized    = ['-march=native', '-O2', '-msse', '-msse2', '-mfma', '-mfpmath=sse']
-extra_compile_args_math_debug        = ['-march=native', '-O0', '-g']
+extra_compile_args_math_optimized    = ['-O2', '-mavx']
+extra_compile_args_math_debug        = ['-O0', '-g']
 extra_link_args_math_optimized       = []
 extra_link_args_math_debug           = []
 
@@ -221,8 +218,10 @@ Return value:
                       include_dirs=include_dirs,
                       libraries=libraries
                     )
-
-# Gather user-defined data files
+#    return Extension( extName,
+#                      [extPath],
+#                      include_dirs=include_dirs,
+#                    )# Gather user-defined data files
 #
 # http://stackoverflow.com/questions/13628979/setuptools-how-to-make-package-contain-extra-data-folder-and-all-folders-inside
 datafiles = []
@@ -282,8 +281,9 @@ cython_ext_modules = [ext_module_pml,
 # Note that my_ext_modules is just a list of Extension objects. We could add any C sources (not coming from Cython modules) here if needed.
 # cythonize() just performs the Cython-level processing, and returns a list of Extension objects.
 #
-my_ext_modules = cythonize(cython_ext_modules, include_path=my_include_dirs, gdb_debug=my_debug,
-        compiler_directives={'embedsignature': True})
+my_ext_modules = cythonize(cython_ext_modules, include_path=my_include_dirs,
+                           gdb_debug=my_debug) #,
+                           #compiler_directives={'embedsignature': True})
 
 aa = 0
 print('####### datafiles content is')
