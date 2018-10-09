@@ -7,7 +7,7 @@ Serendipyty
     :target: https://pypi.python.org/pypi/serendipyty
 
 .. image:: https://mybinder.org/badge.svg
-    :target: https://mybinder.org/v2/gh/serendipyty/examples/master?filepath=Seismic%20modeling%20and%20visualization%20-%20v1.ipynb
+    :target: https://mybinder.org/v2/gh/serendipyty/serendipyty/master?filepath=notebooks%2FSeismic_modeling_and_visualization_v1.ipynb
 
 Serendipyty is a Python library for learning and teaching Geophysics.
 The goal of this project is to introduce the concept of
