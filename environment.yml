@@ -1,0 +1,10 @@
+name: serendipyty_test
+dependencies:
+  - python=3.6
+  - numpy
+  - cython
+  - matplotlib
+  - joblib
+  - pandas
+  - pip:
+    - serendipyty=0.0.8
