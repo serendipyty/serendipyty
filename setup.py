@@ -218,11 +218,7 @@ Return value:
                       include_dirs=include_dirs,
                       libraries=libraries
                     )
-#    return Extension( extName,
-#                      [extPath],
-#                      include_dirs=include_dirs,
-#                    )# Gather user-defined data files
-#
+
 # http://stackoverflow.com/questions/13628979/setuptools-how-to-make-package-contain-extra-data-folder-and-all-folders-inside
 datafiles = []
 getext = lambda filename: os.path.splitext(filename)[1]
@@ -264,7 +260,7 @@ except MyFileNotFoundError:
 # declare Cython extension modules here
 ext_module_awe2d = declare_cython_extension("serendipyty.seismic.modelling.awe2d", use_math=True, use_openmp=True, include_dirs=my_include_dirs)
 ext_module_ebc = declare_cython_extension("serendipyty.seismic.modelling.ebc_filippo", use_math=True,  use_openmp=True, include_dirs=my_include_dirs)
-ext_module_pml = declare_cython_extension("serendipyty.seismic.modelling.generate_pml_coeff", use_math=False, use_openmp=False, include_dirs=my_include_dirs)
+ext_module_pml = declare_cython_extension("serendipyty.seismic.modelling.generate_pml_coeff", use_math=True, use_openmp=True, include_dirs=my_include_dirs)
 
 # this is mainly to allow a manual logical ordering of the declared modules
 #
@@ -284,20 +280,6 @@ cython_ext_modules = [ext_module_pml,
 my_ext_modules = cythonize(cython_ext_modules, include_path=my_include_dirs,
                            gdb_debug=my_debug) #,
                            #compiler_directives={'embedsignature': True})
-
-aa = 0
-print('####### datafiles content is')
-print(datafiles)
-print('#######')
-print(dir(my_ext_modules[aa]))
-print('####### THE NAME IS {}'.format(cython_ext_modules[aa].name))
-print('####### THE SOURCES ARE {}'.format(cython_ext_modules[aa].sources))
-print('####### THE BLA BLA IS {}'.format(cython_ext_modules[aa].include_dirs))
-print('####### THE BLA BLA IS {}'.format(cython_ext_modules[aa].library_dirs))
-print('####### THE BLA BLA IS {}'.format(cython_ext_modules[aa].extra_compile_args))
-print('####### THE BLA BLA IS {}'.format(cython_ext_modules[aa].extra_link_args))
-
-#'extra_compile_args', 'extra_link_args', 'extra_objects', 'include_dirs', 'language', 'libraries', 'library_dirs', 'name', 'np_pythran', 'optional', 'py_limited_api', 'runtime_library_dirs', 'sources', 'swig_opts', 'undef_macros']
 
 #########################################################
 # Call setup()

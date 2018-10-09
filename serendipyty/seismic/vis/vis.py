@@ -9,7 +9,7 @@ Created on Fri Oct  5 12:11:29 2018
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
 import matplotlib.animation as animation
-from mpldatacursor import datacursor
+#from mpldatacursor import datacursor
 
 __all__ = ['plot', 'animate', 'animate3']
 
@@ -164,7 +164,7 @@ def plot(data,
             cbax.set_label(cb_labels[panel])
 
 
-    datacursor(display='single')
+    #datacursor(display='single')
 
     fig.canvas.mpl_connect('pick_event', onclick)
     #fig.canvas.mpl_connect('button_press_event', onclick)

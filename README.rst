@@ -27,14 +27,11 @@ Install with
 
     conda install matplotlib joblib pandas
 
-    pip install mpldatacursor
-
     conda install jupyter
     python -m ipykernel install --user --name yourenv --display-name "Python (yourenv)"
 
-
     pip install --upgrade pip
-    pip install serendipyty
+    pip install --upgrade -v serendipyty
 
 Documentation
 =============
