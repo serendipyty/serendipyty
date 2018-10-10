@@ -7,7 +7,7 @@ Serendipyty
     :target: https://pypi.python.org/pypi/serendipyty
 
 .. image:: https://mybinder.org/badge.svg
-    :target: https://mybinder.org/v2/gh/serendipyty/serendipyty/master?filepath=notebooks%2FSeismic_modeling_and_visualization_v1.ipynb
+    :target: https://mybinder.org/v2/gh/serendipyty/serendipyty/master?filepath=notebooks%2FSeismic_modeling_and_visualization_v2.ipynb
 
 Serendipyty is a Python library for learning and teaching Geophysics.
 The goal of this project is to introduce the concept of
@@ -18,12 +18,10 @@ and verifiable answers to scientific questions arising from various fields of ph
 
 Installation
 ============
-Install with
-
 .. code-block:: shell
 
-    conda create -n yourenv python=3.6
-    source activate yourenv
+    conda create -n sere python=3.6
+    source activate sere
 
     # Setup
     conda install numpy cython
@@ -31,8 +29,9 @@ Install with
     conda install matplotlib joblib pandas
 
     conda install jupyter
-    python -m ipykernel install --user --name yourenv --display-name "Python (yourenv)"
+    python -m ipykernel install --user --name sere --display-name "Python (sere)"
 
+    # This should install the latest version 0.0.8
     pip install --upgrade -v serendipyty
 
 Documentation
