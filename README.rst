@@ -42,7 +42,7 @@ Clicking the **launch binder** button above will launch a mybinder.org instance 
 
 Documentation
 =============
-Documentation is generated using `Sphinx <http://www.sphinx-doc.org/en/master/#>`_ and
+`Documentation <https://serendipyty.github.io/>`_ is generated using `Sphinx <http://www.sphinx-doc.org/en/master/#>`_ and
 uses the `numpy docstring style <https://numpydoc.readthedocs.io/en/latest/format.html#docstring-standard>`_.
 
 Collaborators
