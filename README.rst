@@ -9,7 +9,8 @@ Serendipyty
 .. image:: https://mybinder.org/badge.svg
     :target: https://mybinder.org/v2/gh/serendipyty/serendipyty/master?filepath=notebooks%2FSeismic_modeling_and_visualization_v2.ipynb
 
-Serendipyty is a Python library for learning and teaching Geophysics.
+`Serendipyty <https://pypi.org/project/serendipyty/>`_
+is a Python library for learning and teaching Geophysics.
 The goal of this project is to introduce the concept of
 reproducible computational science to students with little or no programming experience.
 Using Python and Jupyter, the purpose of this project is to present students
@@ -33,6 +34,11 @@ Installation
 
     # This should install the latest version 0.0.8
     pip install --upgrade -v serendipyty
+
+Notebooks
+=========
+Clicking the **launch binder** button above will launch a mybinder.org instance to reproduce
+`this notebook <https://github.com/serendipyty/serendipyty/blob/master/notebooks/Seismic_modeling_and_visualization_v2.ipynb>`_.
 
 Documentation
 =============
